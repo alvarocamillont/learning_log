@@ -11,7 +11,3 @@ class Topic(models.Model):
     def __str__(self):
         """Devolve uma representação em string do modelo"""
         return self.text
-
-
-
-
