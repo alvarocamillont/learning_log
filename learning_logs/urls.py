@@ -8,4 +8,7 @@ urlpatterns = [
 
     # Mostra todos os assuntos
     url(r'^topics/$', views.topics, name='topics'),
+
+    # Mostra de detalhes do tópico
+    url(r'^topics/(?P<topic_id>\d+)/$', views.topic, name='topic'),
 ]
