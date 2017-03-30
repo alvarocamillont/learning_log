@@ -5,6 +5,10 @@
 <p>Tópico : {{ topic }}</p>
 
 <p>Entrada:</p>
+<p>
+    <a href="{% url 'learning_logs:new_entry' topic.id %}">Nova Entrada</a>
+</p>
+
 <ul>
     {% for entry in entries %}
         <li>

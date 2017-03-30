@@ -1,5 +1,6 @@
 from django import forms
-from .models import Topic
+
+from .models import Entry, Topic
 
 
 class TopicForm(forms.ModelForm):
@@ -8,3 +9,12 @@ class TopicForm(forms.ModelForm):
         model = Topic
         fields = ['text']
         label = {'text': ''}
+
+
+class EntryForm(forms.ModelForm):
+    """Classe para detalhes do tópico"""
+    class Meta:
+        model = Entry
+        fields = ['text']
+        labels = {'text': ''}
+        widgets = {'text': forms.Textarea(attrs={'cols': 80})}
