@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 
 from .models import Topic
-from .forms import TopicForm,EntryForm
+from .forms import TopicForm, EntryForm
 
 
 def index(request):
