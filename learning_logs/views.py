@@ -20,6 +20,7 @@ def topics(request):
     return render(request, 'learning_logs/topics.html', context)
 
 
+@login_required
 def topic(request, topic_id):
     """Mostra os detalhes de um tópico"""
     topic = Topic.objects.get(id=topic_id)
@@ -28,6 +29,7 @@ def topic(request, topic_id):
     return render(request, 'learning_logs/topic.html', context)
 
 
+@login_required
 def new_topic(request):
     """Cadastro de um novo tópico"""
     if request.method != 'POST':
@@ -45,6 +47,7 @@ def new_topic(request):
     return render(request, 'learning_logs/new_topic.html', context)
 
 
+@login_required
 def new_entry(request, topic_id):
     """Acrescenta uma nova entrada ao tópico"""
     topic = Topic.objects.get(id=topic_id)
@@ -67,6 +70,7 @@ def new_entry(request, topic_id):
     return render(request, 'learning_logs/new_entry.html', context)
 
 
+@login_required
 def edit_entry(request, entry_id):
     """Edita uma entrada"""
     entry = Entry.objects.get(id=entry_id)
