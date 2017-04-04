@@ -1,9 +1,10 @@
-from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
 
-from .models import Topic, Entry
-from .forms import TopicForm, EntryForm
+from .forms import EntryForm, TopicForm
+from .models import Entry, Topic
 
 
 def index(request):
@@ -11,6 +12,7 @@ def index(request):
     return render(request, 'learning_logs/index.html')
 
 
+@login_required
 def topics(request):
     """Mostra todos os tópicos"""
     topics = Topic.objects.order_by('date_added')
