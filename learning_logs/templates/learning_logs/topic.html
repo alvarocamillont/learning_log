@@ -5,6 +5,11 @@
 {% endblock header %}
 
 {% block content %}
+
+<h3>
+    <a href="{% url 'learning_logs:new_entry' topic.id %}">Nova Entrada</a>
+</h3>
+
 {% for entry in entries %}
     <div class="panel panel-default">
         <div class="panel-heading">
