@@ -1,11 +1,21 @@
-{% extends "learning_logs/base.html" %} {% block content %} {% if form.errors %}
-<p>Usuário e senha incorreto.</p>
-{% endif%}
+{% extends "learning_logs/base.html" %}
 
-<form method="post" action="{% url 'users:register' %}">
-    {% csrf_token%}
-    {{form.as_p}}
-    <button name="submit">Cadastrar</button>
+{% load bootstrap3 %}
+
+{% block header %}
+    <h2>Cadastre-se</h2>
+{% endblock header %}
+
+{% block content %}
+
+<form method="post" action="{% url 'users:register' %}" class="form">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+
+    {% buttons %}
+        <button name="submit" class="btn btn-primary">Cadastrar</button>
+    {% endbuttons %}
+
     <input type="hidden" name="next" value="{% url 'learning_logs:index' %}">
 </form>
 
