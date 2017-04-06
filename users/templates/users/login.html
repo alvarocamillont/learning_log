@@ -1,11 +1,20 @@
-{% extends "learning_logs/base.html" %} {% block content %} {% if form.errors %}
-<p>Usuário e senha incorreto.</p>
-{% endif%}
+{% extends "learning_logs/base.html" %}
+{% load bootstrap3 %}
 
-<form method="post" action="{% url 'users:login' %}">
-    {% csrf_token%}
-    {{form.as_p}}
-    <button name="submit">Log In</button>
+{% block header %}
+    <h2>Faça seu Login</h2>
+{% endblock header %}
+
+{% block content %}
+
+<form method="post" action="{% url 'users:login' %}" class="form">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+
+    {% buttons %}
+        <button name="submit" class="btn btn-primary">Login</button>
+    {% endbuttons %}
+
     <input type="hidden" name="next" value="{% url 'learning_logs:index' %}">
 </form>
 
