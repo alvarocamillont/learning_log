@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.http import Http404, HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 from .forms import EntryForm, TopicForm
 from .models import Entry, Topic
@@ -23,7 +23,7 @@ def topics(request):
 @login_required
 def topic(request, topic_id):
     """Mostra os detalhes de um tópico"""
-    topic = Topic.objects.get(id=topic_id)
+    topic = get_object_or_404(Topic, id=topic_id)
     # Garante que o tópico é do usuário
     if topic.owner != request.user:
         raise Http404
