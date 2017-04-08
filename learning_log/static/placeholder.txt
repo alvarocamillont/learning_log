@@ -1,1 +1,1 @@
-Este arquivo garante que learning_log/static/ será adicionado ao projeto.
+Este arquivo garante que learning_log/static/ será adicionado ao projeto. teste
