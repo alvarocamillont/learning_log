@@ -132,27 +132,24 @@ BOOTSTRAP3 = {
     'include_jquery': True,
 }
 
-# Configurações para o heroku
-if os.getcwd == '/app':
+# Heroku settings
+cwd = os.getcwd()
+if cwd == '/app' or cwd[:4] == '/tmp':
     import dj_database_url
     DATABASES = {
         'default': dj_database_url.config(default='postgres://localhost')
     }
 
-    # Honra o cabeçalho 'X-Forward-Proto' para request.is_secure()
+    # Honor the 'X-Forwarded-Proto' header for request.is_secure().
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-    # Cabeçalhos para permitir todos os host
-    ALLOWED_HOSTS = ['*']
+    # Only allow heroku to host the project.
+    ALLOWED_HOSTS = ['learning-log-final.herokuapp.com']
+    DEBUG = False
 
-    PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-
-    # Static files (CSS, JavaScript, Images)
-    # https://docs.djangoproject.com/en/1.9/howto/static-files/
-    STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
-    STATIC_URL = '/static/'
-
-    # Extra places for collectstatic to find static files.
+    # Static asset configuration
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    STATIC_ROOT = 'staticfiles'
     STATICFILES_DIRS = (
-        os.path.join(PROJECT_ROOT, 'static'),
+        os.path.join(BASE_DIR, 'static'),
     )
